@@ -1,11 +1,15 @@
 let form = document.getElementById("addForm");
 let itemList = document.getElementById("items");
+let filter = document.getElementById("filter");
 
 // Form, submit events
 form.addEventListener("submit", addItem);
 
 // delete remove
 itemList.addEventListener("click", removeItem);
+
+// Filter
+filter.addEventListener("keyup", filterItems);
 
 // Add Item
 function addItem(e) {
@@ -30,7 +34,7 @@ function addItem(e) {
     deleteBtn.classList = "btn btn-danger btn-sm float-end delete";
 
     // app text node
-    deleteBtn.appendChild(document.createTextNode('X'));
+    deleteBtn.appendChild(document.createTextNode("X"));
 
     li.appendChild(deleteBtn);
 
@@ -39,10 +43,27 @@ function addItem(e) {
 
 // Remove item
 function removeItem(e) {
-    if(e.target.classList.contains('delete')) {
-        if(confirm('Are you sure you want to remove')) {
+    if (e.target.classList.contains("delete")) {
+        if (confirm("Are you sure you want to remove")) {
             let li = e.target.parentElement;
             itemList.removeChild(li);
         }
     }
+}
+
+// Filter
+function filterItems(e) {
+    let text = e.target.value.toLowerCase();
+
+    let items = itemList.getElementsByTagName("li");
+
+    Array.from(items).forEach(function (item) {
+        let itemName = item.firstChild.textContent;
+
+        if (itemName.toLowerCase().indexOf(text) != -1) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    });
 }

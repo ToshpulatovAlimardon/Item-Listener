@@ -16,7 +16,7 @@ function addItem(e) {
     e.preventDefault();
 
     // Get input value
-    let newItem = document.getElementById("item").value;
+    let newItem = document.getElementById("item");
     
     // Create new li element
     let li = document.createElement("li");
@@ -25,7 +25,10 @@ function addItem(e) {
     li.className = "list-group-item";
 
     // Add text node with input value
-    li.appendChild(document.createTextNode(newItem));
+    li.appendChild(document.createTextNode(newItem.value));
+
+    // Input value cleaning
+    newItem.value = "";
 
     // Create delete button
     let deleteBtn = document.createElement("button");

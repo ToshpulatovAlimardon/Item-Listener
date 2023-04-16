@@ -17,7 +17,7 @@ function addItem(e) {
 
     // Get input value
     let newItem = document.getElementById("item").value;
-
+    
     // Create new li element
     let li = document.createElement("li");
 
@@ -61,7 +61,7 @@ function filterItems(e) {
         let itemName = item.firstChild.textContent;
 
         if (itemName.toLowerCase().indexOf(text) != -1) {
-            item.style.display = "block";
+            item.style.display = "flex";
         } else {
             item.style.display = "none";
         }
